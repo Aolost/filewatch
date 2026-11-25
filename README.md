@@ -247,3 +247,7 @@ To regenerate the golden JSON after an intentional schema addition:
 ```bash
 go test ./internal/cli -update
 ```
+
+## Licence
+
+[MIT](LICENSE) © 2026 Skepta.
