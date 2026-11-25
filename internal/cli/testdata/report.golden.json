@@ -1,0 +1,72 @@
+{
+  "schema": "filewatch.report",
+  "schema_version": 1,
+  "tool_version": "0.1.0",
+  "status": "MATCH_FOUND",
+  "complete": true,
+  "root": "<ROOT>",
+  "indicators": {
+    "path": "<INDICATORS>",
+    "format_version": 1,
+    "records": 1,
+    "sha256": "d3bb072c09758daab749cb13c608a917d661cf92b9bd96329956d92f5db010b6"
+  },
+  "limits": {
+    "max_files": 100000,
+    "max_total_bytes": 4294967296,
+    "max_file_bytes": 1073741824,
+    "max_depth": 64,
+    "max_dir_entries": 100000,
+    "timeout_seconds": 600,
+    "symlinks": "not_followed"
+  },
+  "summary": {
+    "entries_examined": 4,
+    "files_hashed": 3,
+    "bytes_hashed": 21,
+    "indicator_matches": 1,
+    "heuristic_findings": 1,
+    "skipped": 0,
+    "skipped_by_reason": {},
+    "skip_records_omitted": 0,
+    "incomplete_reasons": []
+  },
+  "matches": [
+    {
+      "path": "a.txt",
+      "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "label": "Example label"
+    }
+  ],
+  "heuristic_findings": [
+    {
+      "path": "sub/invoice.pdf.exe",
+      "rule": "double-extension",
+      "kind": "lead",
+      "explanation": "Name ends with a document/media extension followed by an executable one; systems that hide known extensions would display it as a .pdf file.",
+      "evidence": "extensions .pdf.exe"
+    }
+  ],
+  "skipped": [],
+  "files": [
+    {
+      "path": "a.txt",
+      "size": 3,
+      "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    },
+    {
+      "path": "b.txt",
+      "size": 5,
+      "sha256": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+    },
+    {
+      "path": "sub/invoice.pdf.exe",
+      "size": 13,
+      "sha256": "677c93aa613cf4ca6ad3b1083a7bbec27e691668a5eecb02e08a93ff55049589"
+    }
+  ],
+  "notes": [
+    "MATCH_FOUND: at least one file's SHA-256 is listed in the indicator file. This is an indicator match, not proof that the file is malicious.",
+    "Heuristic findings are leads for review, not malware verdicts."
+  ]
+}

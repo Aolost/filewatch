@@ -1,0 +1,6 @@
+filewatch-indicators v1
+# Example indicator file. These are digests of harmless strings, not malware:
+#   sha256("abc")  and  sha256("") (the empty file).
+# Listing the empty-file digest is usually a mistake: every empty file matches.
+sha256:ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad Example: the three bytes "abc"
+sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 Example: empty file
