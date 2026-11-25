@@ -224,9 +224,9 @@ An example report is in
 make check
 ```
 
-`make check` runs gofmt, `go vet`, and a source check. The source check
-rejects raw bidi characters and any executable-looking file in the repo. Then
-it runs `go test -race`, followed by each fuzz target for `FUZZTIME` (10s by
+`make check` runs gofmt, `go vet`, then `go test -race`. The tests include a
+repository check (`internal/repocheck`) that rejects raw bidi characters in
+sources and any executable-looking file in the repo. After that it runs each fuzz target for `FUZZTIME` (10s by
 default). The fuzz targets are the indicator parser, the name heuristics,
 output escaping, and scanning a file with a fuzzed name. Everything runs
 offline (`GOPROXY=off`, `GOTOOLCHAIN=local`). If Go is managed by mise and has

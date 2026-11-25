@@ -23,9 +23,6 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
           cache: false
-      - name: Install GNU grep (macOS, for grep -P in source-check)
-        if: runner.os == 'macOS'
-        run: brew install grep && echo "$(brew --prefix grep)/libexec/gnubin" >> "$GITHUB_PATH"
       - name: make check
         run: make check FUZZTIME=20s
 

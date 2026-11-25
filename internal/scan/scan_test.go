@@ -714,6 +714,14 @@ func FuzzScanName(f *testing.F) {
 		}
 		w.WriteString(markerContent)
 		w.Close()
+		// The filesystem may store a different name than requested (Windows
+		// maps invalid UTF-8 to U+FFFD; some filesystems normalise Unicode),
+		// so the expected name is what the directory actually holds.
+		ents, err := os.ReadDir(dir)
+		if err != nil || len(ents) != 1 {
+			t.Fatalf("readdir: %v (%d entries)", err, len(ents))
+		}
+		stored := ents[0].Name()
 		before := snapshot(t, dir)
 		opts := DefaultOptions()
 		opts.Indicators = indicatorSet(t, markerContent)
@@ -731,8 +739,8 @@ func FuzzScanName(f *testing.F) {
 				t.Fatal(err)
 			}
 		}
-		if p != name {
-			t.Fatalf("reported %q for %q", p, name)
+		if p != stored {
+			t.Fatalf("reported %q for stored name %q (requested %q)", p, stored, name)
 		}
 	})
 }

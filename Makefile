@@ -14,9 +14,9 @@ FUZZ_TARGETS := \
 	./internal/report:FuzzSafeText \
 	./internal/scan:FuzzScanName
 
-.PHONY: check fmt-check vet source-check test race fuzz build clean
+.PHONY: check fmt-check vet test race fuzz build clean
 
-check: fmt-check vet source-check race fuzz
+check: fmt-check vet race fuzz
 	@echo "make check: OK"
 
 build:
@@ -28,15 +28,8 @@ fmt-check:
 vet:
 	$(GO) vet ./...
 
-# Reject invisible bidi controls in sources ("Trojan Source") and any file
-# that looks like an executable sample; fixtures must be generated text.
-source-check:
-	@if grep -rlP '[\x{202A}-\x{202E}\x{2066}-\x{2069}]' --include='*.go' --include='*.md' --include='*.txt' . ; then \
-		echo "raw bidirectional control characters found (use \\u escapes)"; exit 1; fi
-	@bad=$$(find . -path ./.git -prune -o -path ./bin -prune -o -type f -print | while read -r f; do \
-		h=$$(head -c 4 "$$f" | od -An -tx1 | tr -d ' \n'); \
-		case "$$h" in 7f454c46*|4d5a*|feedface|feedfacf|cefaedfe|cffaedfe) echo "$$f";; esac; done); \
-	if [ -n "$$bad" ]; then echo "executable-looking files in repository:"; echo "$$bad"; exit 1; fi
+# Repository hygiene (no raw bidi controls, no executable-looking files) is
+# enforced by internal/repocheck, a portable Go test run by "race" below.
 
 test:
 	$(GO) test -count=1 ./...
