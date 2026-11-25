@@ -14,6 +14,7 @@ import (
 	"testing"
 
 	"github.com/Aolost/filewatch/internal/indicators"
+	"github.com/Aolost/filewatch/internal/version"
 )
 
 var update = flag.Bool("update", false, "rewrite golden files")
@@ -134,7 +135,7 @@ func TestParseSize(t *testing.T) {
 }
 
 func TestVersionAndHelp(t *testing.T) {
-	if code, out, _ := runCLI("version"); code != 0 || !strings.Contains(out, "0.1.0") {
+	if code, out, _ := runCLI("version"); code != 0 || !strings.Contains(out, version.Version) {
 		t.Fatalf("version: %d %q", code, out)
 	}
 	if code, out, _ := runCLI("help"); code != 0 || !strings.Contains(out, "SCAN_INCOMPLETE") {

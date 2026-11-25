@@ -12,7 +12,7 @@ of these files have exactly the bytes of something on my list?" It also points
 out a few structural oddities worth a human look.
 
 ```bash
-go install github.com/Aolost/filewatch/cmd/filewatch@v0.1.0
+go install github.com/Aolost/filewatch/cmd/filewatch@v0.1.1
 ```
 
 Or build from a checkout:
@@ -136,7 +136,7 @@ name and there are no timestamps.
 ```text
 schema            "filewatch.report"
 schema_version    1
-tool_version      "0.1.0"
+tool_version      "0.1.1"
 status            NO_MATCHES_FOUND | MATCH_FOUND | SCAN_INCOMPLETE
 complete          bool: false if anything that affects completeness was skipped
 root              absolute path that was scanned

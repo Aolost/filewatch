@@ -1,7 +1,7 @@
 {
   "schema": "filewatch.report",
   "schema_version": 1,
-  "tool_version": "0.1.0",
+  "tool_version": "0.1.1",
   "status": "MATCH_FOUND",
   "complete": true,
   "root": "<ROOT>",
